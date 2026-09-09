@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ name }} - Portofolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <a href="{% url 'main:show_main' %}" class="brand">{{ name }}</a>
+            <nav>
+                <a href="{% url 'main:show_main' %}">Profile</a>
+                <a href="{% url 'main:show_experience' %}">Experience</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero" id="profile">
+            <div class="container hero-grid">
+                <div class="hero-identity">
+                    <p class="hero-kicker">Computer Science &middot; Universitas Indonesia</p>
+                    <h1>{{ name }}</h1>
+                </div>
+                <div class="hero-photo">
+                    <div class="photo-block"></div>
+                    <img class="avatar" src="/static/img/marwa.jpg" alt="Photo of {{ name }}">
+                </div>
+                <div class="hero-details">
+                    <p class="bio">{{ bio }}</p>
+                    <dl class="meta-list">
+                        <div class="meta-row">
+                            <dt>NPM</dt>
+                            <dd>{{ npm }}</dd>
+                        </div>
+                        <div class="meta-row">
+                            <dt>Program</dt>
+                            <dd>{{ study_program }}</dd>
+                        </div>
+                    </dl>
+                    <div class="social-links">
+                        <a href="https://github.com/kobisamarr" class="social-link">GitHub</a>
+                        <a href="https://www.linkedin.com/in/marwa-muhlashon-645280379/" class="social-link">LinkedIn</a>
+                        <a href="mailto:marwapacil@gmail.com" class="social-link">Email</a>
+                        <a href="https://instagram.com/mrwaur/" class="social-link">Instagram</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="landing">
+            <div class="container hero-grid">
+                <div>
+                    <h3>My Cute Skills</h3>
+                    <p class="description">I grew up as a nomaden person that slightly affects my thoughts about this dynamic life.</p>
+                </div>
+                <div class="container">
+                    <div class="skill-card-layout">
+                        <h4 class="skill-card">UI/UX Design</h4>
+                        <h4 class="skill-card">Piano</h4>
+                        <h4 class="skill-card">Crochet</h4>
+                        <h4 class="skill-card">halo</h4>
+                        <h4 class="skill-card">hi</h4>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2026 {{ name }}. Fakultas Ilmu Komputer, Universitas Indonesia.</p>
+        </div>
+    </footer>
+</body>
+</html>
