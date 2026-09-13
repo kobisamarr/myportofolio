@@ -37,3 +37,56 @@ Jawab: Kurang lebih bagian chip skill-skill saya itu tidak sebaris dengan tulisa
 3. Website yang Anda buat saat ini adalah static web murni. Batasan apa yang Anda rasakan saat mencoba menyajikan informasi pada portofolio Anda secara optimal? Berdasarkan batasan tersebut, fungsionalitas dinamis apa yang paling ingin Anda persiapkan dan tambahkan pada iterasi proyek selanjutnya?
 
 Jawab: tidak bisa diakses dari device lain. Lalu, belum ada backend misalnya untuk memberikan field bagi pengunjung yang ingin mengirimkan pesan kerja sama kepada saya yang bisa langsung terintegrasi dengan email.
+
+-----TUTORIAL 2-----
+Saya baru menyadari ternyata git saya terduplikasi pada 2 folder berbeda; myportofolio dan portofolio.
+Ketika saya menghapus folder yang di portofolio, git nya tidak otomatis bisa untuk bagian yang myportofolio. Saya sudah bertanya ke asdos, lalu kita berakhir sama-sama bingung karena posisi branch nya
+udah sesuai, git status nya juga udah sesuai. Kemudian saya bertanya ke AI dan berhasil fix masalahnya.
+Ternyata permasalahannya ada pada isi dari file .gitignore yang kurang lengkap dan detail.
+
+Isi awal:
+*
+.env*
+db.sqlite3
+env/
+
+Setelah diubah:
+.env*
+db.sqlite3
+env/
+__pycache__/
+*.pyc
+
+https://claude.ai/share/5d13990c-58e2-448d-b5ef-74f3ed932f99 
+
+Mungkin beberapa push sebelumnya belum sempat ter-commit. Mohon pengertiannya. Terima kasih.
+
+-----TUGAS 2-----
+1. Ketika pengguna membuka halaman portofolio baru, HTTP akan request ke urls yang mana secara
+arsitektur, bagian urls ada di urls.py. Kemudian, urls.py menyambungkan urls dengan view (views.py). View dapat menggunakan model yang sudah dibuat di models.py untuk mengelola data yang ada di database.
+Data itu kemudian dikirimkan oleh view ke template. Sehingga, 
+halaman-halaman yang ada di templates seperti index, education, experience dapat ditampilkan ke pengguna
+2. Agar semua inisiasi dan perubahan terpusat pada model. Sehingga tidak perlu merubah satu-satu
+sebuah variabel jika ada yang harus diedit di template.
+3. makemigrations membuat perubahan setelah menambahkan/merubah sesuatu di models.py.
+migrate menjalankan file models agar bisa diterapkan ke database.
+Contoh: 
+di dalam model, ada
+'''
+class Education(models.Model): 
+
+    EDUCATION_CHOICES = [
+        ('SIC', 'Sekolah Indonesia Cairo'),
+        ('LIS', 'La Royba Islamic School'),
+        ('MBI', 'MAU Amanatul Ummah Program MBI'),
+    ]
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False) #adalah field bertipe UUIDField yang digunakan sebagai primary key dan nilainya di-generate otomatis menggunakan uuid.uuid4.
+'''
+Lalu kemudian saya menambahkan line di bawah id
+'''
+    title = models.CharField(max_length=255) #adalah field bertipe CharField untuk judul pengalaman, dengan panjang maksimal 255 karakter.
+'''
+struktur model jadi berubah, jadi jalankan makemigrations yang kemudian django membuat file migrasi 
+berdasarkan perubahan tersebut.
+setelah itu, menjalankan migrate. Sehingga perubahan tersebut diterapkan ke database.

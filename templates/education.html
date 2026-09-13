@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Experience - {{ name }}</title>
+    <title>Education - {{ name }}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
@@ -22,26 +22,26 @@
     </header>
 
     <main>
-        <section class="experience-section" id="experience">
+        <section class="education-section" id="education">
             <div class="container">
                 <p class="section-kicker">Perjalanan saya sejauh ini</p>
-                <h1>Experience</h1>
+                <h1>Education</h1>
 
-                <div class="experience-grid">
-                    {% for experience in experience_list %}
-                        <article class="experience-card">
-                            <span class="experience-category">
-                                {{ experience.get_category_display }}
+                <div class="education-grid">
+                    {% for education in education_list %}
+                        <article class="education-card">
+                            <span class="education-category">
+                                {{ education.get_category_display }}
                             </span>
-                            <h2>{{ experience.title }}</h2>
-                            <p class="experience-description">
-                                {{ experience.description }}
+                            <h2>{{ education.title }}</h2>
+                            <p class="education-description">
+                                {{ education.description }}
                             </p>
 
-                            {% if experience.is_ongoing %}
-                                <p class="experience-status">Sedang berlangsung</p>
+                            {% if education.is_ongoing %}
+                                <p class="education-status">Sedang berlangsung</p>
                             {% else %}
-                                <p class="experience-status">Selesai</p>
+                                <p class="education-status">Selesai</p>
                             {% endif %}
                         </article>
                     {% empty %}
@@ -52,23 +52,6 @@
                 </div>
             </div>
         </section>
-        <!-- <section class="landing">
-            <div class="container hero-grid">
-                <div>
-                    <h3>My Cute Skills</h3>
-                    <p class="description">I grew up as a nomaden person that slightly affects my thoughts about this dynamic life.</p>
-                </div>
-                <div class="container">
-                    <div class="skill-card-layout">
-                        <h4 class="skill-card">UI/UX Design</h4>
-                        <h4 class="skill-card">Piano</h4>
-                        <h4 class="skill-card">Crochet</h4>
-                        <h4 class="skill-card">halo</h4>
-                        <h4 class="skill-card">hi</h4>
-                    </div>
-                </div>
-            </div>
-        </section> -->
     </main>
 
     <footer class="site-footer">
