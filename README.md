@@ -62,6 +62,7 @@ https://claude.ai/share/5d13990c-58e2-448d-b5ef-74f3ed932f99
 Mungkin beberapa push sebelumnya belum sempat ter-commit. Mohon pengertiannya. Terima kasih.
 
 -----TUGAS 2-----
+Penggunaan AI: https://chatgpt.com/share/6aa7a043-a1cc-83ec-b870-23e4ae28dba9
 1. Ketika pengguna membuka halaman portofolio baru, HTTP akan request ke urls yang mana secara
 arsitektur, bagian urls ada di urls.py. Kemudian, urls.py menyambungkan urls dengan view (views.py). View dapat menggunakan model yang sudah dibuat di models.py untuk mengelola data yang ada di database.
 Data itu kemudian dikirimkan oleh view ke template. Sehingga, 
@@ -90,3 +91,4 @@ Lalu kemudian saya menambahkan line di bawah id
 struktur model jadi berubah, jadi jalankan makemigrations yang kemudian django membuat file migrasi 
 berdasarkan perubahan tersebut.
 setelah itu, menjalankan migrate. Sehingga perubahan tersebut diterapkan ke database.
+
