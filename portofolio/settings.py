@@ -133,3 +133,5 @@ MAILERS = {
         'BACKEND': 'django.core.mail.backends.console.EmailBackend',
     },
 }
+
+CSRF_TRUSTED_ORIGINS = ["https://pws.cs.uil.ac.id/marwa.muhlashon"]
