@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block meta %}
+    <title>People Who Know Me - {{ name }}</title>
+{% endblock meta %}
+
+{% block content %}
+<section class="experience-section" id="reviews">
+    <div class="container">
+        <div class="project-header">
+    <div>
+            <p class="section-kicker">People Who Know Me</p>
+        <h1>What do my friends say?</h1>
+    </div>
+
+    <a href="{% url 'main:create_reviews' %}" class="button project-add-button">
+        <span>+</span>
+        Add Review
+    </a>
+</div>
+        <div class="experience-grid">
+            {% for review in review_list %}
+                <article class="experience-card">
+                    <span class="experience-category">
+                        {{ review.relationship }}
+                    </span>
+
+                    <h2>{{ review.name }}</h2>
+
+                    <p class="experience-description">
+                        "{{ review.review }}"
+                    </p>
+
+                    <p class="experience-status">
+                        ⭐ {{ review.rating }}/5
+                    </p>
+
+                    <div class="project-actions">
+                        <a href="{% url 'main:edit_reviews' review.id %}" class="button button-secondary">
+                            Edit
+                        </a>
+
+                        <form method="POST" action="{% url 'main:delete_reviews' review.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="button button-danger">
+                                Delete
+                            </button>
+                        </form>
+                    </div>
+                    </form>
+
+                </article>
+            {% empty %}
+                <p class="empty-state">
+                    Belum ada review.
+                </p>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock content %}

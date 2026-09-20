@@ -1,8 +1,8 @@
 from django.contrib import messages
 from django.shortcuts import render
 
-from main.models import Experience, Education, Project
-from main.forms import ProjectForm
+from main.models import Experience, Education, Project, Reviews
+from main.forms import ProjectForm, ReviewForm
 from django.shortcuts import render, redirect, get_object_or_404
 from django.core import serializers
 from django.http import HttpResponse
@@ -86,3 +86,68 @@ def delete_project(request, project_id):
         return redirect("main:show_projects")
 
     return redirect("main:show_projects")
+
+def show_reviews(request):
+    json_response = get_reviews_json(request)
+
+    reviews = serializers.deserialize(
+        "json",
+        json_response.content.decode("utf-8"),
+    )
+    reviews = [review.object for review in reviews]
+
+    context = {
+        "name": "Marwa Muhlashon",
+        "review_list": reviews,
+    }
+
+    return render(request, "reviews.html", context)
+
+def create_reviews(request):
+    form = ReviewForm(request.POST or None)
+
+    if request.method == "POST" and form.is_valid():
+        form.save()
+        messages.success(request, "Review berhasil ditambahkan! :)")
+        return redirect("main:show_reviews")
+
+    context = {
+        "name": "Marwa Muhlashon",
+        "form": form,
+    }
+
+    return render(request, "reviews_form.html", context)
+
+def edit_reviews(request, review_id):
+    review = get_object_or_404(Reviews, pk=review_id)
+    form = ReviewForm(request.POST or None, instance=review)
+
+    if request.method == "POST" and form.is_valid():
+        form.save()
+        messages.success(request, "Review berhasil diperbarui!")
+        return redirect("main:show_reviews")
+
+    context = {
+        "name": "Marwa Muhlashon",
+        "form": form, 
+        "review": review, 
+    }
+
+    return render(request, "reviews_form.html", context)
+
+def delete_reviews(request, review_id):
+    review = get_object_or_404(Reviews, pk=review_id)
+
+    if request.method == "POST":
+        review.delete()
+        messages.success(request, "Review berhasil dihapus!")
+        return redirect("main:show_reviews")
+
+def get_reviews_json(request):
+    reviews = Reviews.objects.all()
+    review_json = serializers.serialize("json", reviews)
+
+    return HttpResponse(
+        review_json,
+        content_type="application/json"
+    )

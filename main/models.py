@@ -59,3 +59,16 @@ class Project(models.Model):
 
     def __str__(self):
         return self.title
+
+class Reviews(models.Model):
+    name = models.CharField(max_length=100)
+    relationship = models.CharField(max_length=100)
+    review = models.TextField()
+    rating = models.IntegerField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        db_table = "main_reviews"
+
+    def __str__(self):
+        return self.name

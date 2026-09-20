@@ -25,7 +25,7 @@ saya tanya AI dan dia bilang saya harus aktifkan lagi venv nya dengan
 Lalu saya tanya cara stop runserver, katanya tekan Ctrl + C
 
 PERTANYAAN REFLEKTIF
-
+### Tugas 1
 1. Pada Tutorial dan Tugas 1, Anda diberi kebebasan untuk menentukan tampilan dari website portofolio Anda. Saat Anda merancang struktur HTML yang digunakan, apakah Anda menggunakan elemen semantik HTML5 seperti <section>, <article>, atau <aside>? Jika iya, bagaimana elemen tersebut membantu Anda dalam membuat static web? Jika tidak, mengapa tanpa elemen tersebut sudah memenuhi kebutuhan desain Anda?
 
 Jawab: saya hanya menggunakan <section> dan <div>. Saya mengimplementasikan elemen semantik tersebut dengan memberikan class style css di dalamnya lalu disesuaikan dengan layout yang saya inginkan. Saya biasanya berpacu pada figma untuk layout dan style.css dari setiap kurung segitiga tersebut. <div> seperti merepresentasikan frame pada figma.
@@ -63,6 +63,8 @@ Mungkin beberapa push sebelumnya belum sempat ter-commit. Mohon pengertiannya. T
 
 -----TUGAS 2-----
 Penggunaan AI: https://chatgpt.com/share/6aa7a043-a1cc-83ec-b870-23e4ae28dba9
+
+### Tugas 2
 1. Ketika pengguna membuka halaman portofolio baru, HTTP akan request ke urls yang mana secara
 arsitektur, bagian urls ada di urls.py. Kemudian, urls.py menyambungkan urls dengan view (views.py). View dapat menggunakan model yang sudah dibuat di models.py untuk mengelola data yang ada di database.
 Data itu kemudian dikirimkan oleh view ke template. Sehingga, 
@@ -92,3 +94,11 @@ struktur model jadi berubah, jadi jalankan makemigrations yang kemudian django m
 berdasarkan perubahan tersebut.
 setelah itu, menjalankan migrate. Sehingga perubahan tersebut diterapkan ke database.
 
+-----TUGAS 3-----
+Penggunaan AI: https://chatgpt.com/share/6aafe29c-4044-83ec-a54d-6057ff570f1f
+Di sini, disclaimer, saya menggunakan AI untuk menjelaskan langkah-langkah untuk mengerjakan tugas karena saya masih bingung di beberapa hal. Namun, saat menerapkan langkah dari AI dan menemukan trial-error, saya mencoba memahami dan bahkan lebih paham beberapa hal daripada sebelumnya. Jadi, saya merasakan proses belajar juga dalam penggunaan AI ini (kebanyaka  code saya ketik manual menyesuaikan saran, walaupun masih ada yang copas code, tapi saya juga berusaha memahami kode itu).
+
+### Tugas 3
+1. Kita menggunakan ModelForm itu langsung menggunakan fitur membuat form yang sudah ada pada django, jadi kita tinggal menerapkan beberapa implementasi sesuai keperluan kita. csrf token itu untuk
+2. Karena json lebih mudah dan langsung nyambung ke datanya.
+3. fungsi view pertama tama kita mendefinisikan sesuatu yang ingin dilakukan website itu (seperti show, edit, add). disesuaikan apakah itu hanya show, atau perlu request data input, atau mendelete. lalu, dicocokkan url nya di urls.py. kemudian data tersebut yang dimasukan di request berbentuk object querySet, lalu diserialisasi. serialisasi itu untuk menyimpan data yang dari id, nama, dan lain lain ke dalam database. jadi kita perlu karna sebelum datanya dikembalikan disimpan dulu. 

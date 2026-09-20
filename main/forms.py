@@ -1,6 +1,6 @@
 from django.forms import ModelForm, TextInput, Textarea, URLInput
 
-from main.models import Project
+from main.models import Project, Reviews
 
 class ProjectForm(ModelForm):
     class Meta:
@@ -49,4 +49,21 @@ class ProjectForm(ModelForm):
                     "placeholder": "https://drive.google.com/thumbnail?id=...&sz=w1000",
                 }
             ),
+        }
+
+class ReviewForm(ModelForm):
+    class Meta:
+        model = Reviews
+        fields = [
+            "name",
+            "relationship",
+            "review",
+            "rating",
+        ]
+
+        labels = {
+            "name": "Nama",
+            "relationship": "Connection dengan Marwa",
+            "review": "Review",
+            "rating": "Rating (out of 5)",
         }
