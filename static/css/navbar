@@ -1,0 +1,110 @@
+
+.navbar {
+    width: 100%;
+    height: 64px;
+    padding: 0 8rem;
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+
+    border-bottom: 1px solid var(--line);
+}
+
+/* Logo */
+.navbar .text-wrapper {
+    color: var(--black-magic);
+    font-family: "Poppins", sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1;
+    text-decoration: none;
+}
+
+/* Semua menu */
+.navbar .frame a {
+    color: var(--black-magic);
+    font-family: "Poppins", sans-serif;
+    font-size: 0.9rem;
+    line-height: 1;
+    text-decoration: none;
+
+    transition: opacity 0.2s ease;
+}
+
+.navbar .frame a:hover {
+    opacity: 0.7;
+}
+
+.navbar .frame {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex: 1;
+}
+
+/* Profile */
+.navbar .frame .div {
+    font-weight: 700;
+}
+
+/* Menu lainnya */
+.navbar .frame .text-wrapper-2 {
+    font-weight: 400;
+}
+
+/* Reviews */
+.navbar .div-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0.5rem 0.75rem;
+    background-color: var(--black-magic);
+    border-radius: 0.5rem;
+
+    text-decoration: none;
+}
+
+/* Teks Login register */
+
+.frame-2 {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center;
+    gap: 1rem;
+    flex-shrink: 0;
+}
+
+.frame-2 .text-wrapper-3 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 8px 16px;
+    background-color: var(--black-magic);
+    border-radius: 12px;
+
+    color: var(--igloo);
+    font-family: "Poppins", sans-serif;
+    font-size: 0.9rem;
+    font-weight: 400;
+    line-height: 1;
+    text-decoration: none;
+
+    white-space: nowrap;
+
+    transition: transform 0.3s ease;
+}
+
+.frame-2 .text-wrapper-3:hover {
+    transform: scale(1.1);
+}
+
+.meta-row dd:hover {
+    transform: scale(1.1);
+}
+
+

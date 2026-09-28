@@ -102,3 +102,10 @@ Di sini, disclaimer, saya menggunakan AI untuk menjelaskan langkah-langkah untuk
 1. Kita menggunakan ModelForm itu langsung menggunakan fitur membuat form yang sudah ada pada django, jadi kita tinggal menerapkan beberapa implementasi sesuai keperluan kita. csrf token itu untuk
 2. Karena json lebih mudah dan langsung nyambung ke datanya.
 3. fungsi view pertama tama kita mendefinisikan sesuatu yang ingin dilakukan website itu (seperti show, edit, add). disesuaikan apakah itu hanya show, atau perlu request data input, atau mendelete. lalu, dicocokkan url nya di urls.py. kemudian data tersebut yang dimasukan di request berbentuk object querySet, lalu diserialisasi. serialisasi itu untuk menyimpan data yang dari id, nama, dan lain lain ke dalam database. jadi kita perlu karna sebelum datanya dikembalikan disimpan dulu. 
+
+### Tugas 4
+AI tools: (All free)
+
+https://chatgpt.com/share/6aba686c-4970-83ec-b1ed-5b4d987ff69f
+
+https://chatgpt.com/share/6aba686c-4970-83ec-b1ed-5b4d987ff69f

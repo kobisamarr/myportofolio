@@ -34,115 +34,95 @@ h1,
 
 
 /* ==================== HEADER ==================== */
-
 .navbar {
-    width: 100%;
-    height: 64px;
-    padding: 0 8rem;
-    box-sizing: border-box;
-
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
 
-    border-bottom: 1px solid var(--line);
+    width: 100%;
+    padding: 1.5rem 4rem;
+    box-sizing: border-box;
 }
 
-/* Logo */
-.navbar .text-wrapper {
-    color: var(--black-magic);
-    font-family: "Poppins", sans-serif;
-    font-size: 20px;
-    font-weight: 700;
-    line-height: 1;
+/* LOGO */
+.text-wrapper {
     text-decoration: none;
-}
-
-/* Menu */
-.navbar .frame {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-}
-
-/* Semua menu */
-.navbar .frame a {
-    color: var(--black-magic);
-    font-family: "Poppins", sans-serif;
-    font-size: 0.9rem;
-    line-height: 1;
-    text-decoration: none;
-
-    transition: opacity 0.2s ease;
-}
-
-.navbar .frame a:hover {
-    opacity: 0.7;
-}
-
-/* Profile */
-.navbar .frame .div {
+    font-size: 1.5rem;
     font-weight: 700;
+    color: #1D2433;
 }
 
-/* Menu lainnya */
-.navbar .frame .text-wrapper-2 {
-    font-weight: 400;
-}
+/* MENU TENGAH */
+.frame {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 
-/* Reviews */
-.navbar .div-wrapper {
     display: flex;
+    flex-direction: row;
     align-items: center;
-    justify-content: center;
+    gap: 2.5rem;
+}
 
-    padding: 0.5rem 0.75rem;
-    background-color: var(--black-magic);
+.text-wrapper-2 {
+    display: inline-block;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #1D2433;
+    white-space: nowrap;
+}
+
+/* LOGIN REGISTER */
+.frame-2 {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center;
+    gap: 1.5rem;
+    margin-left: auto;
+}
+
+.text-wrapper-3 {
+    display: inline-block;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    
+    white-space: nowrap;
+    
+    padding: 0.1rem 0.6rem;
+    border: 2px solid var(--ink);
     border-radius: 0.5rem;
-
-    text-decoration: none;
-}
-
-/* Teks Reviews */
-.navbar .text-wrapper-3 {
-    color: var(--igloo);
-    font-family: "Poppins", sans-serif;
-    font-size: 0.9rem;
-    font-weight: 400;
-    line-height: 1;
-    text-decoration: none;
-}
-
-.frame-2 .text-wrapper-3, .meta-row dd {
-    color: var(--Igloo, #F7F1E5);
-    font-family: Poppins;
-    font-size: 0.9rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-
-    display: flex;
-    padding: var(--8, 8px) var(--16, 16px);
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-
-    border-radius: var(--12, 12px);
-    background: var(--Black-Magic, #02012D);
+    color: var(--ink);
 
     transition: transform 0.3s ease;
 }
 
-.frame-2 .text-wrapper-3:hover {
-    transform: scale(1.1);
+.text-wrapper-4 {
+    display: inline-block;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    
+    white-space: nowrap;
+    
+    padding: 0.2rem 0.6rem;
+    background-color: var(--ink);
+    border-radius: 0.5rem;
+    color: white;
+
+    transition: transform 0.3s ease;
 }
 
-.meta-row dd:hover {
-    transform: scale(1.1);
+/* HOVER */
+.text-wrapper-2:hover {
+    color: #F47C48;
 }
 
-
-
+.text-wrapper-3:hover {
+    transform: scale(1.1);
+}
 /* ==================== HERO ==================== */
 
 .hero {
@@ -204,6 +184,13 @@ h1,
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.sesi-login {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 0.5rem;
 }
 
 .social-links {
@@ -384,6 +371,27 @@ h1,
     margin-top: 0.35rem;
 }
 
+.star-form {
+    display: inline;
+}
+
+.button-star {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: var(--ink);
+}
+
+.button-star.is-starred {
+    background: var(--accent);
+}
+
+.star-count {
+    padding: 0.05rem 0.4rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.25);
+    font-size: 0.8rem;
+}
 
 /* ==================== BUTTONS ==================== */
 
@@ -593,8 +601,54 @@ h1,
     }
 
     .navbar {
-        padding: 0 1.5rem;
+        position: static;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.25rem;
+
+        padding: 1.25rem 1.5rem;
     }
+
+    /* Logo */
+    .text-wrapper {
+        font-size: 1.4rem;
+    }
+
+    /* Menu */
+    .frame {
+        position: static;
+        transform: none;
+
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.75rem 1.25rem;
+    }
+
+    .text-wrapper-2 {
+        font-size: 0.9rem;
+        white-space: nowrap;
+    }
+
+    /* Login & Register */
+    .frame-2 {
+        margin-left: 0;
+
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: center;
+        align-items: center;
+
+        gap: 0.75rem;
+    }
+
+    .login-button,
+    .register-button {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
+
 
     .hero-grid {
         grid-template-columns: 1fr;

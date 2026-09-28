@@ -25,18 +25,24 @@
                 mrwaur.
             </a>
 
-            <nav class="frame">
+            <div class="frame">
                 <a href="{% url 'main:show_main' %}" class="text-wrapper-2">Profile</a>
                 <a href="{% url 'main:show_experience' %}" class="text-wrapper-2">Experience</a>
                 <a href="{% url 'main:show_education' %}" class="text-wrapper-2">Education</a>
                 <a href="{% url 'main:show_projects' %}" class="text-wrapper-2">Projects</a>
-            </nav>
+                <a href="{% url 'main:show_reviews' %}" class="text-wrapper-2">Reviews</a>
 
-            <nav class="frame-2">
-                <a href="{%url 'main:show_reviews' %}" class="text-wrapper-3">
-                    Reviews
-                </a>
-            </nav>
+            </div>
+
+            <div class="frame-2">
+                {% if user.is_authenticated %}
+                    <span class="nav-user">{{ user.username }}</span>
+                    <a href="{% url 'main:logout' %}" class="text-wrapper-3">Logout</a>
+                {% else %}
+                    <a href="{% url 'main:login' %}" class="text-wrapper-3">Login</a>
+                    <a href="{% url 'main:register' %}" class="text-wrapper-4">Register</a>
+                {% endif %}
+            </div>
             
 
         </div>
