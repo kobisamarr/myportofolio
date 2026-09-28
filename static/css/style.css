@@ -5,60 +5,125 @@
 }
 
 :root {
-    --ink: #0f0f0f;
-    --paper: #faf6f0;
-    --accent: #231B9A;
-    --accent-dark: #1C1489;
+    --ink: #02012D;
+    --paper: #F7F1E5;
+    --accent: #02012D;
+    --accent-dark: #E6642A;
     --line: #e3d9c9;
-    --text-muted: #6b6459;
+    --text-muted: #535353;
     --radius: 4px;
 }
 
 body {
-    font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
     color: var(--ink);
     background-color: var(--paper);
     line-height: 1.6;
 }
 
-h1, .brand {
-    font-family: "Space Grotesk", -apple-system, sans-serif;
+h1,
+.brand {
+    font-family: "Purple Purse";
 }
 
 .container {
-    max-width: 960px;
+    max-width: 80%;
     margin: 0 auto;
-    padding: 0 1.5rem;
+    padding: 0 0;
 }
 
-.site-header {
-    border-bottom: 1px solid var(--line);
-}
 
-.site-header .container {
+/* ==================== HEADER ==================== */
+.navbar {
+    position: relative;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 1.25rem 1.5rem;
+    justify-content: space-between;
+
+    width: 100%;
+    padding: 1.5rem 4rem;
+    box-sizing: border-box;
 }
 
-.brand {
-    font-size: 1.3rem;
+/* LOGO */
+.text-wrapper {
+    text-decoration: none;
+    font-size: 1.5rem;
     font-weight: 700;
-    color: var(--ink);
-    text-decoration: none;
+    color: #1D2433;
 }
 
-.site-header nav {
+/* MENU TENGAH */
+.frame {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+
     display: flex;
-    gap: 2rem;
+    flex-direction: row;
+    align-items: center;
+    gap: 2.5rem;
 }
 
-.site-header nav a {
-    color: var(--ink);
+.text-wrapper-2 {
+    display: inline-block;
     text-decoration: none;
-    font-size: 0.95rem;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #1D2433;
+    white-space: nowrap;
 }
+
+/* LOGIN REGISTER */
+.frame-2 {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center;
+    gap: 1.5rem;
+    margin-left: auto;
+}
+
+.text-wrapper-3 {
+    display: inline-block;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    
+    white-space: nowrap;
+    
+    padding: 0.1rem 0.6rem;
+    border: 2px solid var(--ink);
+    border-radius: 0.5rem;
+    color: var(--ink);
+
+    transition: transform 0.3s ease;
+}
+
+.text-wrapper-4 {
+    display: inline-block;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    
+    white-space: nowrap;
+    
+    padding: 0.2rem 0.6rem;
+    background-color: var(--ink);
+    border-radius: 0.5rem;
+    color: white;
+
+    transition: transform 0.3s ease;
+}
+
+/* HOVER */
+.text-wrapper-2:hover {
+    color: #F47C48;
+}
+
+.text-wrapper-3:hover {
+    transform: scale(1.1);
+}
+/* ==================== HERO ==================== */
 
 .hero {
     padding: 4.5rem 0 5rem;
@@ -84,7 +149,6 @@ h1, .brand {
 .hero-kicker {
     font-size: 0.85rem;
     letter-spacing: 0.08em;
-    text-transform: uppercase;
     color: var(--accent-dark);
     font-weight: 700;
     margin-bottom: 0.75rem;
@@ -96,6 +160,7 @@ h1, .brand {
 }
 
 .bio {
+    font-size: 0.85rem;
     color: var(--text-muted);
     max-width: 480px;
     margin-bottom: 1.5rem;
@@ -107,38 +172,43 @@ h1, .brand {
     margin-bottom: 1.5rem;
 }
 
-.meta-row dt {
+/* .meta-row dt {
     font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 0.06em;
     color: var(--text-muted);
     margin-bottom: 0.15rem;
+} */
+
+.meta-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
-.meta-row dd {
-    font-weight: 600;
+.sesi-login {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 0.5rem;
 }
 
 .social-links {
     display: flex;
     gap: 0.5rem;
     flex-wrap: wrap;
+    justify-content: center;
+    padding: 0.5rem
 }
 
-.social-link {
-    display: inline-block;
-    font-size: 0.85rem;
-    font-weight: 600;
-    text-decoration: none;
-    color: var(--paper);
-    background-color: var(--ink);
-    border-radius: var(--radius);
-    padding: 0.5rem 1.1rem;
-    transition: background-color 0.2s ease;
+.social-logo img {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease;
 }
 
-.social-link:hover {
-    background-color: var(--accent);
+.social-logo img:hover {
+    transform: scale(1.1);
 }
 
 .hero-photo {
@@ -162,49 +232,90 @@ h1, .brand {
     position: relative;
     z-index: 1;
     display: block;
-    width: 100%;
-    aspect-ratio: 1 / 1;
+    width: 110%;
+    height: auto;
     object-fit: cover;
+
+}
+
+.container secondary-grid {
+    gap: 2rem;
+    padding: 1rem 1 rem;
+}
+
+/* ==================== SHARED SECTION ==================== */
+
+.experience-section,
+.education-section {
+    padding: 4rem 0;
+}
+
+.section-kicker {
+    color: var(--accent-dark);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.experience-section h1,
+.education-section h1 {
+    margin: 0.4rem 0 1.5rem;
+    font-size: 2rem;
+}
+
+.experience-grid,
+.education-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
+}
+
+.experience-card,
+.education-card {
+    padding: 1.25rem;
+    background-color: #fff;
+    border: 1px solid var(--line);
     border-radius: var(--radius);
-    border: 3px solid var(--ink);
 }
 
-.site-footer {
-    padding: 1.5rem;
+.experience-category,
+.education-category {
+    color: var(--accent-dark);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.experience-card h2,
+.education-card h2 {
+    margin: 0.5rem 0;
+    font-size: 1.25rem;
+}
+
+.experience-description,
+.education-description,
+.empty-state {
     color: var(--text-muted);
+}
+
+.experience-status,
+.education-status {
+    margin-top: 1rem;
     font-size: 0.85rem;
-    border-top: 1px solid var(--line);
+    font-weight: 600;
 }
 
-@media (max-width: 600px) {
-    .hero-grid {
-        grid-template-columns: 1fr;
-        grid-template-areas:
-            "identity"
-            "photo"
-            "details";
-    }
 
-    .hero-photo {
-        max-width: 220px;
-    }
+/* ==================== SKILLS ==================== */
 
-    .social-links {
-        justify-content: flex-start;
-    }
-
-}
-
-/* tambahan */
 .skill-card {
     display: inline-flex;
-    padding: 4px 8px;
+    padding: 0.4rem 0.5rem;
     justify-content: center;
     align-items: center;
     gap: 12px;
     color: var(--paper);
-    
-
     border-radius: 12px;
     background: var(--gradient, linear-gradient(270deg, #1C1489 0%, #453CC7 100%));
 }
@@ -215,124 +326,14 @@ h1, .brand {
     align-content: center;
     gap: 12px;
     flex-wrap: wrap;
+    margin: 1rem 0;
 }
 
-/* experience styles */
 
-.experience-section {
-    padding: 4rem 0;
-    border-top: 1px solid var(--line);
-}
+/* ==================== FORMS ==================== */
 
-.section-kicker {
-    color: var(--accent-dark);
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-}
-
-.experience-section h1 {
-    margin: 0.4rem 0 1.5rem;
-    font-size: 2rem;
-}
-
-.experience-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 1rem;
-}
-
-.experience-card {
-    padding: 1.25rem;
-    background-color: #fff;
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-}
-
-.experience-category {
-    color: var(--accent-dark);
-    font-size: 0.75rem;
-    font-weight: 700;
-    text-transform: uppercase;
-}
-
-.experience-card h2 {
-    margin: 0.5rem 0;
-    font-size: 1.25rem;
-}
-
-.experience-description,
-.empty-state {
-    color: var(--text-muted);
-}
-
-.experience-status {
-    margin-top: 1rem;
-    font-size: 0.85rem;
-    font-weight: 600;
-}
-
-/* --------------education style------------------- */
-
-.education-section {
-    padding: 4rem 0;
-    border-top: 1px solid var(--line);
-}
-
-.section-kicker {
-    color: var(--accent-dark);
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-}
-
-.education-section h1 {
-    margin: 0.4rem 0 1.5rem;
-    font-size: 2rem;
-}
-
-.education-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 1rem;
-}
-
-.education-card {
-    padding: 1.25rem;
-    background-color: #fff;
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-}
-
-.education-category {
-    color: var(--accent-dark);
-    font-size: 0.75rem;
-    font-weight: 700;
-    text-transform: uppercase;
-}
-
-.education-card h2 {
-    margin: 0.5rem 0;
-    font-size: 1.25rem;
-}
-
-.education-description,
-.empty-state {
-    color: var(--text-muted);
-}
-
-.education-status {
-    margin-top: 1rem;
-    font-size: 0.85rem;
-    font-weight: 600;
-}
-
-/* PORJECT FORM */
 .project-form {
     width: 100%;
-    max-width: 100%;
     margin-top: 1.5rem;
 }
 
@@ -349,7 +350,6 @@ h1, .brand {
 .form-group input,
 .form-group textarea {
     width: 100%;
-    box-sizing: border-box;
     padding: 0.7rem;
     border: 1px solid var(--accent);
     border-radius: var(--radius);
@@ -371,6 +371,30 @@ h1, .brand {
     margin-top: 0.35rem;
 }
 
+.star-form {
+    display: inline;
+}
+
+.button-star {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: var(--ink);
+}
+
+.button-star.is-starred {
+    background: var(--accent);
+}
+
+.star-count {
+    padding: 0.05rem 0.4rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.25);
+    font-size: 0.8rem;
+}
+
+/* ==================== BUTTONS ==================== */
+
 .button {
     display: inline-block;
     height: fit-content;
@@ -389,8 +413,12 @@ h1, .brand {
     background: var(--ink);
 }
 
+.button-danger {
+    background: #b42318;
+}
 
-/* projects */
+
+/* ==================== PROJECTS ==================== */
 
 .project-header {
     width: 100%;
@@ -399,6 +427,10 @@ h1, .brand {
     align-items: center;
     gap: 1rem;
     margin-bottom: 1.5rem;
+}
+
+.project-header h1 {
+    margin-bottom: 0;
 }
 
 .project-grid {
@@ -416,10 +448,6 @@ h1, .brand {
     height: auto;
     border: 1px solid black;
     border-radius: var(--radius);
-}
-
-.project-header h1 {
-    margin-bottom: 0;
 }
 
 .project-add-button {
@@ -474,13 +502,16 @@ h1, .brand {
     margin-top: auto;
 }
 
+.project-actions .experience-status {
+    margin-top: 0;
+}
+
 .hide {
     display: none !important;
 }
 
-.project-actions .experience-status {
-    margin-top: 0;
-}
+
+/* ==================== DELETE MODAL ==================== */
 
 .project-delete-modal {
     display: none;
@@ -527,10 +558,7 @@ h1, .brand {
 
 .project-delete-modal__content h2 {
     margin: 0 0 0.75rem;
-    font-family:
-        "Space Grotesk",
-        -apple-system,
-        sans-serif;
+    font-family: "Space Grotesk", -apple-system, sans-serif;
     font-size: 1.5rem;
 }
 
@@ -554,11 +582,91 @@ h1, .brand {
     margin-top: 1.5rem;
 }
 
-.button-danger {
-    background: #b42318;
+
+/* ==================== FOOTER ==================== */
+
+.site-footer {
+    padding: 1rem 0;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    border-top: 1px solid var(--line);
 }
 
+
+/* ==================== RESPONSIVE ==================== */
+
 @media (max-width: 600px) {
+    .container {
+        padding: 0 1.5rem;
+    }
+
+    .navbar {
+        position: static;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.25rem;
+
+        padding: 1.25rem 1.5rem;
+    }
+
+    /* Logo */
+    .text-wrapper {
+        font-size: 1.4rem;
+    }
+
+    /* Menu */
+    .frame {
+        position: static;
+        transform: none;
+
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.75rem 1.25rem;
+    }
+
+    .text-wrapper-2 {
+        font-size: 0.9rem;
+        white-space: nowrap;
+    }
+
+    /* Login & Register */
+    .frame-2 {
+        margin-left: 0;
+
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: center;
+        align-items: center;
+
+        gap: 0.75rem;
+    }
+
+    .login-button,
+    .register-button {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
+
+
+    .hero-grid {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "identity"
+            "photo"
+            "details";
+    }
+
+    .hero-photo {
+        width: 300px;
+        flex-shrink: 0;
+    }
+
+    .social-links {
+        justify-content: flex-start;
+    }
+
     .project-header {
         align-items: flex-start;
         flex-direction: column;

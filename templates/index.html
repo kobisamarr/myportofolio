@@ -1,41 +1,50 @@
 {% extends 'base.html' %}
 {% load static %}
-
-
 {% block content %}
+
         <section class="hero" id="profile">
             <div class="container hero-grid">
+                
                 <div class="hero-identity">
-                    <p class="hero-kicker">Computer Science &middot; Universitas Indonesia</p>
+                    <p class="hero-kicker">Computer Science &hyphen; Universitas Indonesia</p>
                     <h1>{{ name }}</h1>
                 </div>
                 <div class="hero-photo">
-                    <div class="photo-block"></div>
-                    <img class="avatar" src="/static/img/marwa.jpg" alt="Photo of {{ name }}">
+                    <img class="avatar" src="/static/img/marwa-2.svg" alt="Photo of {{ name }}">
                 </div>
                 <div class="hero-details">
                     <p class="bio">{{ bio }}</p>
-                    <dl class="meta-list">
-                        <div class="meta-row">
-                            <dt>NPM</dt>
-                            <dd>{{ npm }}</dd>
+                    <div class="sesi-login">
+                        <p class="bio">Sesi terakhir login: </p>
+                        <p class="bio"><strong>{{ last_login }}</strong></p>
+                    </div>
+
+                    <div class="meta-row">
+                        <dd>{{ study_program }}</dd>
+
+                        <div class="social-links">
+                            <a href="https://github.com/kobisamarr" class="social-logo">
+                                <img src="{% static 'icon/github.svg' %}" alt="github">
+                            </a>
+
+                            <a href="https://www.linkedin.com/in/marwa-muhlashon-645280379/" class="social-logo">
+                                <img src="{% static 'icon/linkedin.svg' %}" alt="linkedin">
+                            </a>
+
+                            <a href="mailto:marwapacil@gmail.com" class="social-logo">
+                                <img src="{% static 'icon/email.svg' %}" alt="email">
+                            </a>
+
+                            <a href="https://instagram.com/mrwaur/" class="social-logo">
+                                <img src="{% static 'icon/instagram.svg' %}" alt="instagram">
+                            </a>
                         </div>
-                        <div class="meta-row">
-                            <dt>Program</dt>
-                            <dd>{{ study_program }}</dd>
-                        </div>
-                    </dl>
-                    <div class="social-links">
-                        <a href="https://github.com/kobisamarr" class="social-link">GitHub</a>
-                        <a href="https://www.linkedin.com/in/marwa-muhlashon-645280379/" class="social-link">LinkedIn</a>
-                        <a href="mailto:marwapacil@gmail.com" class="social-link">Email</a>
-                        <a href="https://instagram.com/mrwaur/" class="social-link">Instagram</a>
                     </div>
                 </div>
             </div>
         </section>
         <section class="landing">
-            <div class="container hero-grid">
+            <div class="container secondary-grid">
                 <div>
                     <h3>My Cute Skills</h3>
                     <p class="description">I grew up as a nomaden person that slightly affects my thoughts about this dynamic life.</p>

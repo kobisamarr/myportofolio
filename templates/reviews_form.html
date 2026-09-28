@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block meta %}
+    <title>Tambah Review - {{ name }}</title>
+{% endblock meta %}
+
+{% block content %}
+<section class="experience-section" id="reviews-form">
+    <div class="container">
+        <p class="section-kicker">People Who Know Me</p>
+        <h1>{% if review %}Edit Review{% else %}Tambah Review{% endif %}</h1>
+
+        <form method="POST" class="project-form">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label for="{{ form.name.id_for_label }}">Nama</label>
+                {{ form.name }}
+                {% if form.name.errors %}
+                    <div class="form-error">{{ form.name.errors }}</div>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="{{ form.relationship.id_for_label }}">Hubungan dengan Marwa</label>
+                {{ form.relationship }}
+                {% if form.relationship.errors %}
+                    <div class="form-error">{{ form.relationship.errors }}</div>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="{{ form.review.id_for_label }}">Review</label>
+                {{ form.review }}
+                {% if form.review.errors %}
+                    <div class="form-error">{{ form.review.errors }}</div>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="{{ form.rating.id_for_label }}">Rating</label>
+                {{ form.rating }}
+                {% if form.rating.errors %}
+                    <div class="form-error">{{ form.rating.errors }}</div>
+                {% endif %}
+            </div>
+
+            <button type="submit" class="button">
+                {% if review %}Simpan Perubahan{% else %}Tambah Review{% endif %}
+            </button>
+
+            <a href="{% url 'main:show_reviews' %}" class="button button-secondary">
+                Batal
+            </a>
+        </form>
+    </div>
+</section>
+{% endblock content %}

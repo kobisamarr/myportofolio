@@ -1,4 +1,6 @@
 import uuid
+
+from django.contrib.auth.models import User
 from django.db import models
 
 class Experience(models.Model): # experience adalah nama model yang kamu definisikan.\, 
@@ -19,6 +21,7 @@ class Experience(models.Model): # experience adalah nama model yang kamu definis
     thumbnail = models.URLField(blank=True, null=True) #adalah field bertipe URLField untuk menyimpan URL gambar thumbnail pengalaman (opsional).
     started_at = models.DateTimeField(auto_now_add=True) # adalah field bertipe DateTimeField yang otomatis berisi tanggal dan waktu saat data dibuat.
     ended_at = models.DateTimeField(blank=True, null=True) #adalah field bertipe DateTimeField yang dapat dibiarkan kosong dan nilainya dapat diatur ke None.
+
     def __str__(self): #digunakan untuk mengembalikan representasi string dari objek (dalam hal ini judul pengalaman).
         return self.title 
     
@@ -56,6 +59,22 @@ class Project(models.Model):
     tech_stack = models.CharField(max_length=255)
     project_url = models.URLField(blank=True)
     project_image_url = models.URLField(blank=True, max_length=500)
+    starred_by = models.ManyToManyField(
+        User, related_name="starred_projects", blank=True
+    )
 
     def __str__(self):
         return self.title
+
+class Reviews(models.Model):
+    name = models.CharField(max_length=100)
+    relationship = models.CharField(max_length=100)
+    review = models.TextField()
+    rating = models.IntegerField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        db_table = "main_reviews"
+
+    def __str__(self):
+        return self.name
