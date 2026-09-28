@@ -2,6 +2,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,25 +12,33 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Purple+Purse&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 
 <body>
-
     <header class="site-header">
-        <div class="container">
-            <a href="{% url 'main:show_main' %}" class="brand">
-                {{ name }}
+        <div class="navbar">
+            <a href="{% url 'main:show_main' %}" class="text-wrapper">
+                mrwaur.
             </a>
 
-            <nav>
-                <a href="{% url 'main:show_main' %}">Profile</a>
-                <a href="{% url 'main:show_experience' %}">Experience</a>
-                <a href="{% url 'main:show_education' %}">Education</a>
-                <a href="{% url 'main:show_projects' %}">Projects</a>
-                <a href="{%url 'main:show_reviews' %}">Reviews</a>
+            <nav class="frame">
+                <a href="{% url 'main:show_main' %}" class="text-wrapper-2">Profile</a>
+                <a href="{% url 'main:show_experience' %}" class="text-wrapper-2">Experience</a>
+                <a href="{% url 'main:show_education' %}" class="text-wrapper-2">Education</a>
+                <a href="{% url 'main:show_projects' %}" class="text-wrapper-2">Projects</a>
             </nav>
+
+            <nav class="frame-2">
+                <a href="{%url 'main:show_reviews' %}" class="text-wrapper-3">
+                    Reviews
+                </a>
+            </nav>
+            
+
         </div>
     </header>
 

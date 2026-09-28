@@ -19,6 +19,7 @@ class Experience(models.Model): # experience adalah nama model yang kamu definis
     thumbnail = models.URLField(blank=True, null=True) #adalah field bertipe URLField untuk menyimpan URL gambar thumbnail pengalaman (opsional).
     started_at = models.DateTimeField(auto_now_add=True) # adalah field bertipe DateTimeField yang otomatis berisi tanggal dan waktu saat data dibuat.
     ended_at = models.DateTimeField(blank=True, null=True) #adalah field bertipe DateTimeField yang dapat dibiarkan kosong dan nilainya dapat diatur ke None.
+
     def __str__(self): #digunakan untuk mengembalikan representasi string dari objek (dalam hal ini judul pengalaman).
         return self.title 
     
