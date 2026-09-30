@@ -36,14 +36,13 @@
 
             <div class="frame-2">
                 {% if user.is_authenticated %}
-                    <span class="nav-user">{{ user.username }}</span>
-                    <a href="{% url 'main:logout' %}" class="text-wrapper-3">Logout</a>
+                    <span class="nav-user">Hi, {{ user.username }}!</span>
+                    <a href="{% url 'main:logout' %}" class="button">Logout</a>
                 {% else %}
-                    <a href="{% url 'main:login' %}" class="text-wrapper-3">Login</a>
-                    <a href="{% url 'main:register' %}" class="text-wrapper-4">Register</a>
+                    <a href="{% url 'main:login' %}" class="button button-secondary">Login</a>
+                    <a href="{% url 'main:register' %}" class="button">Register</a>
                 {% endif %}
             </div>
-            
 
         </div>
     </header>
@@ -58,6 +57,6 @@
             <p>&copy; 2026 {{ name }}. Fakultas Ilmu Komputer, Universitas Indonesia.</p>
         </div>
     </footer>
-
+{% include 'components/toast.html' %}
 </body>
 </html>

@@ -9,7 +9,9 @@ from main.models import Experience, Education, Project, Reviews
 from main.forms import ProjectForm, ReviewForm
 from django.shortcuts import render, redirect, get_object_or_404
 from django.core import serializers
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
+from django.views.decorators.http import require_POST
+from main.forms import ProjectForm
 
 import datetime
 
@@ -44,19 +46,12 @@ def show_education(request):
     return render(request, "education.html", context)
 
 def show_projects(request):
-    json_response = get_projects_json(request)
-
-    projects = serializers.deserialize(
-        "json",
-        json_response.content.decode("utf-8"),
-    )
-    projects = [project.object for project in projects]
     title_query = request.GET.get("title", "").strip()
 
     context = {
         "name": "Marwa Muhlashon",
-        "project_list": projects,
         "title_query": title_query,
+        "form": ProjectForm(),
     }
     return render(request, "project.html", context)
 
@@ -82,15 +77,33 @@ def create_project(request):
 
 def get_projects_json(request):
     title_query = request.GET.get("title", "").strip()
-    projects = Project.objects.all()
+    projects = Project.objects.prefetch_related('starred_by').all()
 
     if title_query:
         projects = projects.filter(title__icontains=title_query)
 
-    projects_json = serializers.serialize(
-        "json", projects, use_natural_foreign_keys=True
-    )
-    return HttpResponse(projects_json, content_type="application/json")
+    # Konstruksi data JSON secara manual agar bisa menyisipkan logika Star
+    data = []
+    for project in projects:
+        starred_users = project.starred_by.all()
+        is_starred = request.user in starred_users if request.user.is_authenticated else False
+        starred_by_names = ", ".join([u.username for u in starred_users])
+
+        data.append({
+            "pk": str(project.id),
+            "fields": {
+                "title": project.title,
+                "description": project.description,
+                "tech_stack": project.tech_stack,
+                "project_url": project.project_url,
+                "project_image_url": project.project_image_url,
+                "star_count": starred_users.count(),
+                "is_starred": is_starred,
+                "starred_by_names": starred_by_names,
+            }
+        })
+
+    return JsonResponse(data, safe=False)
 
 @login_required(login_url="/login/")
 def delete_project(request, project_id):
@@ -151,6 +164,7 @@ def create_reviews(request):
 
     return render(request, "reviews_form.html", context)
 
+@login_required(login_url="/login/")
 def edit_reviews(request, review_id):
     review = get_object_or_404(Reviews, pk=review_id)
     form = ReviewForm(request.POST or None, instance=review)
@@ -168,7 +182,11 @@ def edit_reviews(request, review_id):
 
     return render(request, "reviews_form.html", context)
 
+@login_required(login_url="/login/")
 def delete_reviews(request, review_id):
+    if not request.user.is_superuser:
+            raise PermissionDenied
+    
     review = get_object_or_404(Reviews, pk=review_id)
 
     if request.method == "POST":
@@ -220,3 +238,21 @@ def logout_user(request):
     response = redirect("main:show_main")
     response.delete_cookie('last_login')
     return response
+
+@require_POST
+def create_project_ajax(request):
+    if not request.user.is_superuser:
+        return JsonResponse(
+            {"message": "Hanya pemilik portofolio yang dapat menambahkan proyek."},
+            status=403,
+        )
+
+    form = ProjectForm(request.POST)
+    if form.is_valid():
+        project = form.save()
+        return JsonResponse(
+            {"message": "Proyek berhasil ditambahkan.", "pk": str(project.id)},
+            status=201,
+        )
+
+    return JsonResponse({"errors": form.errors.get_json_data()}, status=400)
