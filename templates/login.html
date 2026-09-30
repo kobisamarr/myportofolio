@@ -5,7 +5,7 @@
 {% block content %}
     <main>
         <section class="experience-section">
-            <div class="container">
+            <article class="article-container">
                 <h1>Login</h1>
                 {% for message in messages %}
                     <p class="form-message">{{ message }}</p>
@@ -27,7 +27,7 @@
                     <button type="submit" class="button">Login</button>
                 </form>
                 <p>Belum punya akun? <a href="{% url 'main:register' %}">Daftar di sini</a>.</p>
-            </div>
+            </article>
         </section>
     </main>
 {% endblock content %}

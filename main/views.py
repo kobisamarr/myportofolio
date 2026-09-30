@@ -151,6 +151,7 @@ def create_reviews(request):
 
     return render(request, "reviews_form.html", context)
 
+@login_required(login_url="/login/")
 def edit_reviews(request, review_id):
     review = get_object_or_404(Reviews, pk=review_id)
     form = ReviewForm(request.POST or None, instance=review)
@@ -168,7 +169,11 @@ def edit_reviews(request, review_id):
 
     return render(request, "reviews_form.html", context)
 
+@login_required(login_url="/login/")
 def delete_reviews(request, review_id):
+    if not request.user.is_superuser:
+            raise PermissionDenied
+    
     review = get_object_or_404(Reviews, pk=review_id)
 
     if request.method == "POST":

@@ -40,8 +40,10 @@ h1,
     align-items: center;
     justify-content: space-between;
 
-    width: 100%;
-    padding: 1.5rem 4rem;
+    width: 80%;
+    padding: 1.5rem 0;
+    margin: 0 auto;
+
     box-sizing: border-box;
 }
 
@@ -83,45 +85,9 @@ h1,
     margin-left: auto;
 }
 
-.text-wrapper-3 {
-    display: inline-block;
-    text-decoration: none;
-    font-size: 1rem;
-    font-weight: 500;
-    
-    white-space: nowrap;
-    
-    padding: 0.1rem 0.6rem;
-    border: 2px solid var(--ink);
-    border-radius: 0.5rem;
-    color: var(--ink);
-
-    transition: transform 0.3s ease;
-}
-
-.text-wrapper-4 {
-    display: inline-block;
-    text-decoration: none;
-    font-size: 1rem;
-    font-weight: 500;
-    
-    white-space: nowrap;
-    
-    padding: 0.2rem 0.6rem;
-    background-color: var(--ink);
-    border-radius: 0.5rem;
-    color: white;
-
-    transition: transform 0.3s ease;
-}
-
 /* HOVER */
 .text-wrapper-2:hover {
     color: #F47C48;
-}
-
-.text-wrapper-3:hover {
-    transform: scale(1.1);
 }
 /* ==================== HERO ==================== */
 
@@ -377,9 +343,18 @@ h1,
 
 .button-star {
     display: inline-flex;
+    display: inline-flex;
     align-items: center;
     gap: 0.4rem;
+    
+    white-space: nowrap;
+    
+    padding: 0.1rem 0.6rem;
+    border: 2px solid var(--ink);
+    border-radius: 0.5rem;
     background: var(--ink);
+
+    transition: transform 0.3s ease;
 }
 
 .button-star.is-starred {
@@ -397,24 +372,42 @@ h1,
 
 .button {
     display: inline-block;
-    height: fit-content;
-    border: 0;
-    border-radius: var(--radius);
-    padding: 0.65rem 1rem;
-    background: var(--accent);
-    color: white;
-    cursor: pointer;
-    font: inherit;
-    font-weight: 700;
     text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    
+    white-space: nowrap;
+    
+    padding: 0.1rem 0.6rem;
+    border: 2px solid var(--ink);
+    border-radius: 0.5rem;
+    color: var(--paper);
+    background-color: var(--ink);
+
+    transition: transform 0.3s ease;
+}
+
+.button:hover {
+    transform: scale(1.1);
 }
 
 .button-secondary {
-    background: var(--ink);
+    background-color: var(--paper);
+    color: var(--ink);
 }
 
 .button-danger {
-    background: #b42318;
+    background-color: #b42318;
+    border: 2px solid #b42318;
+}
+
+button.button {
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    cursor: pointer;
+    appearance: none;
 }
 
 
@@ -582,6 +575,18 @@ h1,
     margin-top: 1.5rem;
 }
 
+/* ==================== LOGIN =================== */
+.article-container {
+    width: 100%;
+    max-width: 450px;
+
+    margin: 4rem auto;
+    padding: 2rem;
+
+    background-color: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+}
 
 /* ==================== FOOTER ==================== */
 

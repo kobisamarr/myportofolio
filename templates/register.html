@@ -5,7 +5,7 @@
 {% block content %}
     <main>
         <section class="experience-section">
-            <div class="container">
+            <div class="article-container">
                 <h1>Buat Akun</h1>
                 <form method="post" action="{% url 'main:register' %}" class="project-form">
                     {% csrf_token %}
@@ -17,10 +17,10 @@
                             <label for="{{ field.id_for_label }}">{{ field.label }}</label>
                             {{ field }}
                             {% if field.help_text %}
-                                <div class="form-help">{{ field.help_text }}</div>
+                                <div class="bio form-help">{{ field.help_text }}</div>
                             {% endif %}
                             {% for error in field.errors %}
-                                <p class="form-error">{{ error }}</p>
+                                <p class="bio form-error">{{ error }}</p>
                             {% endfor %}
                         </div>
                     {% endfor %}
