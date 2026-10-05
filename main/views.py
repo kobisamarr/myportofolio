@@ -38,6 +38,29 @@ def show_experience(request):
     }
     return render(request, "experience.html", context)
 
+def get_experience_json(request):
+    title_query = request.GET.get("title", "").strip()
+
+    experiences = Experience.objects.all()
+
+    if title_query:
+        experiences = experiences.filter(title__icontains=title_query)
+
+    data = []
+
+    for experience in experiences:
+        data.append({
+            "pk": str(experience.id),
+            "fields": {
+                "title": experience.title,
+                "description": experience.description,
+                "category": experience.get_category_display(),
+                "is_ongoing": experience.is_ongoing,
+            }
+        })
+
+    return JsonResponse(data, safe=False)
+
 def show_education(request):
     context = {
         "name": "Marwa Muhlashon",
@@ -193,6 +216,7 @@ def delete_reviews(request, review_id):
         review.delete()
         messages.success(request, "Review berhasil dihapus!")
         return redirect("main:show_reviews")
+    return redirect("main:show_reviews")
 
 def get_reviews_json(request):
     reviews = Reviews.objects.all()

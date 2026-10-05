@@ -8,7 +8,38 @@
                 <p class="section-kicker">Perjalanan saya sejauh ini</p>
                 <h1>Experience</h1>
 
-                <div class="experience-grid">
+                <form  id="project-search-form" class="project-search">
+                    <input type="search"
+                           id="search-input"
+                           name="title"
+                           value="{{ title_query }}"
+                           placeholder="Cari berdasarkan nama pengalaman"
+                           class="project-search__input"
+                           aria-label="Cari berdasarkan nama pengalaman">
+                    <button type="submit" class="button">Cari</button>
+                </form>
+
+                
+                 <!-- Loading State -->
+                <div id="loading" class="empty-state hide">
+                    <p>Memuat pengalaman...</p>
+                </div>
+
+                <!-- Error State -->
+                <div id="error" class="empty-state hide">
+                    <p>Gagal memuat data pengalaman. Silakan coba lagi.</p>
+                </div>
+
+                <!-- Empty State -->
+                <div id="empty" class="empty-state hide">
+                    <p>Belum ada pengalaman yang ditambahkan atau ditemukan.</p>
+                </div>
+
+                <!-- Project Grid -->
+                <div id="grid" class="experience-grid project-grid hide"></div>
+
+
+                <!-- <div class="experience-grid">
                     {% for experience in experience_list %}
                         <article class="experience-card">
                             <span class="experience-category">
@@ -30,24 +61,131 @@
                             Belum ada pengalaman yang ditambahkan.
                         </p>
                     {% endfor %}
-                </div>
+                </div> -->
             </div>
         </section>
-        <!-- <section class="landing">
-            <div class="container hero-grid">
-                <div>
-                    <h3>My Cute Skills</h3>
-                    <p class="description">I grew up as a nomaden person that slightly affects my thoughts about this dynamic life.</p>
-                </div>
-                <div class="container">
-                    <div class="skill-card-layout">
-                        <h4 class="skill-card">UI/UX Design</h4>
-                        <h4 class="skill-card">Piano</h4>
-                        <h4 class="skill-card">Crochet</h4>
-                        <h4 class="skill-card">halo</h4>
-                        <h4 class="skill-card">hi</h4>
-                    </div>
-                </div>
-            </div>
-        </section> -->
+
+    <script>
+    // Konfigurasi
+    const BASE_EXPERIENCE_ENDPOINT = "{% url 'main:get_experience_json' %}";
+    let experienceAbortController;
+
+    // Elemen DOM
+    const loadingState = document.getElementById('loading');
+    const errorState = document.getElementById('error');
+    const emptyState = document.getElementById('empty');
+    const gridContainer = document.getElementById('grid');
+    const searchForm = document.getElementById('project-search-form');
+    const searchInput = document.getElementById('search-input');
+
+    // Menampilkan / menyembunyikan section halaman
+    function displayPageSection({
+        showLoading = false,
+        showError = false,
+        showEmpty = false,
+        showGrid = false
+    }) {
+        loadingState.classList.toggle('hide', !showLoading);
+        errorState.classList.toggle('hide', !showError);
+        emptyState.classList.toggle('hide', !showEmpty);
+        gridContainer.classList.toggle('hide', !showGrid);
+    }
+
+    // Membuat card Experience
+    function buildExperienceCardElement(item) {
+        const experience = item.fields;
+
+        const articleElement = document.createElement('article');
+        articleElement.className = 'experience-card';
+
+        const categoryElement = document.createElement('span');
+        categoryElement.className = 'experience-category';
+        categoryElement.textContent = experience.category;
+
+        const titleElement = document.createElement('h2');
+        titleElement.textContent = experience.title;
+
+        const descriptionElement = document.createElement('p');
+        descriptionElement.className = 'experience-description';
+        descriptionElement.textContent = experience.description;
+
+        const statusElement = document.createElement('p');
+        statusElement.className = 'experience-status';
+        statusElement.textContent = experience.is_ongoing
+            ? 'Sedang berlangsung'
+            : 'Selesai';
+
+        articleElement.appendChild(categoryElement);
+        articleElement.appendChild(titleElement);
+        articleElement.appendChild(descriptionElement);
+        articleElement.appendChild(statusElement);
+
+        return articleElement;
+    }
+
+    // Fetch data Experience
+    async function fetchExperiences(searchQuery = "") {
+        if (experienceAbortController) {
+            experienceAbortController.abort();
+        }
+
+        experienceAbortController = new AbortController();
+
+        try {
+            displayPageSection({ showLoading: true });
+
+            const url = searchQuery
+                ? `${BASE_EXPERIENCE_ENDPOINT}?title=${encodeURIComponent(searchQuery)}`
+                : BASE_EXPERIENCE_ENDPOINT;
+
+            const response = await fetch(url, {
+                headers: {
+                    'Accept': 'application/json'
+                },
+                signal: experienceAbortController.signal,
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to fetch data');
+            }
+
+            const experienceData = await response.json();
+
+            if (experienceData.length === 0) {
+                displayPageSection({ showEmpty: true });
+            } else {
+                gridContainer.innerHTML = '';
+
+                experienceData.forEach(item => {
+                    gridContainer.appendChild(
+                        buildExperienceCardElement(item)
+                    );
+                });
+
+                displayPageSection({ showGrid: true });
+            }
+
+        } catch (error) {
+            if (error.name === 'AbortError') return;
+
+            console.error('Error loading experiences:', error);
+            displayPageSection({ showError: true });
+        }
+    }
+
+    // Search
+    let debounceTimer;
+
+    searchInput.addEventListener('input', function() {
+        clearTimeout(debounceTimer);
+
+        debounceTimer = setTimeout(() => {
+            fetchExperiences(searchInput.value.trim());
+        }, 500);
+    });
+
+    // Jalankan saat halaman dibuka
+    fetchExperiences(searchInput.value.trim());
+    </script>
+
 {% endblock content %}

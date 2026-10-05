@@ -112,3 +112,8 @@ https://chatgpt.com/share/6aba686c-4970-83ec-b1ed-5b4d987ff69f
 
 ### Tutorial 5
 tidak ada menggunakan AI, tapi masih ada fitur yang belum lancar ketika submit project.
+
+### Tugas 5
+AI: https://chatgpt.com/share/6ac3bb41-aa54-83ec-b87d-a58dcf28fc6c
+
+1. 
