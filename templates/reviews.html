@@ -40,7 +40,8 @@
                             Edit
                         </a>
 
-                        <form method="POST" action="{% url 'main:delete_reviews' review.id %}">
+                        <form method="POST" action="{% url 'main:delete_reviews' review.id %}"
+                            onsubmit="return confirm('Yakin ingin menghapus review ini?');">
                             {% csrf_token %}
                             <button type="submit" class="button button-danger">
                                 Delete
