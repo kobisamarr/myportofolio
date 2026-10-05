@@ -1,8 +1,21 @@
- {% load static %}
-  <div id="toast-component" class="toast-component toast-hidden" popover="manual">
-      <div class="toast-content">
-          <h3 id="toast-title" class="toast-title">This is a Sample Title</h3>
-          <p id="toast-message" class="toast-message">This is a Sample Message</p>
-      </div>
-  </div>
-  <script src="{% static 'js/toast.js' %}"></script>
+{% load static %}
+<div id="toast-component" class="toast-component toast-hidden" popover="manual">
+    <div class="toast-content">
+        <h3 id="toast-title" class="toast-title"></h3>
+        <p id="toast-message" class="toast-message"></p>
+    </div>
+</div>
+
+<script src="{% static 'js/toast.js' %}"></script>
+
+{% if messages %}
+    {% for message in messages %}
+        <script>
+            showToast(
+                "Success",
+                "{{ message|escapejs }}",
+                "{{ message.tags }}"
+            );
+        </script>
+    {% endfor %}
+{% endif %}
