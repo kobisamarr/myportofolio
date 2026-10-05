@@ -116,4 +116,7 @@ tidak ada menggunakan AI, tapi masih ada fitur yang belum lancar ketika submit p
 ### Tugas 5
 AI: https://chatgpt.com/share/6ac3bb41-aa54-83ec-b87d-a58dcf28fc6c
 
-1. 
+
+1. Menunda eksekusi dalam batas waktu tertentu. Penting agar tidak crash saat melakukan pencarian
+2. Menunggu proses termasuk pengambilan data dari fetch sampai akhirnya menuju ke barisan kode berikutnya
+3. Pengguna lain menyisipkan kode berbahaya ke dalam website kita. Karena tidak ada proses sanitasi data
