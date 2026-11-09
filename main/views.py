@@ -105,7 +105,6 @@ def get_projects_json(request):
     if title_query:
         projects = projects.filter(title__icontains=title_query)
 
-    # Konstruksi data JSON secara manual agar bisa menyisipkan logika Star
     data = []
     for project in projects:
         starred_users = project.starred_by.all()
@@ -156,53 +155,44 @@ def toggle_star(request, project_id):
 
     return redirect("main:show_projects")
 
-def show_reviews(request):
-    json_response = get_reviews_json(request)
-
-    reviews = serializers.deserialize(
-        "json",
-        json_response.content.decode("utf-8"),
+def is_portfolio_editor(user):
+    return (
+        user.is_authenticated
+        and user.groups.filter(name="Editor").exists()
     )
-    reviews = [review.object for review in reviews]
 
+def show_reviews(request):
     context = {
         "name": "Marwa Muhlashon",
-        "review_list": reviews,
+        "is_editor": is_portfolio_editor(request.user),
     }
-
     return render(request, "reviews.html", context)
 
-def create_reviews(request):
-    form = ReviewForm(request.POST or None)
 
-    if request.method == "POST" and form.is_valid():
-        form.save()
-        messages.success(request, "Review berhasil ditambahkan! :)")
-        return redirect("main:show_reviews")
+@login_required(login_url="/login/")
+def create_reviews(request):
+    if not request.user.is_superuser:
+        raise PermissionDenied
 
     context = {
         "name": "Marwa Muhlashon",
-        "form": form,
     }
-
     return render(request, "reviews_form.html", context)
 
 @login_required(login_url="/login/")
 def edit_reviews(request, review_id):
-    review = get_object_or_404(Reviews, pk=review_id)
-    form = ReviewForm(request.POST or None, instance=review)
+    if not (
+        request.user.is_superuser
+        or is_portfolio_editor(request.user)
+    ):
+        raise PermissionDenied
 
-    if request.method == "POST" and form.is_valid():
-        form.save()
-        messages.success(request, "Review berhasil diperbarui!")
-        return redirect("main:show_reviews")
+    review = get_object_or_404(Reviews, pk=review_id)
 
     context = {
         "name": "Marwa Muhlashon",
-        "form": form, 
-        "review": review, 
+        "review": review,
     }
-
     return render(request, "reviews_form.html", context)
 
 @login_required(login_url="/login/")

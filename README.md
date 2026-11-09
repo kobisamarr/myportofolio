@@ -116,4 +116,50 @@ tidak ada menggunakan AI, tapi masih ada fitur yang belum lancar ketika submit p
 ### Tugas 5
 AI: https://chatgpt.com/share/6ac3bb41-aa54-83ec-b87d-a58dcf28fc6c
 
-1. `
+### Tugas 6
+
+1. REST merupakan architectural style yang digunakan
+untuk membangun sistem komunikasi berbasis resource.
+JSON saja tidak cukup untuk menyebut API sebagai RESTful
+karena REST juga memiliki prinsip seperti statelessness,
+resource identification melalui URI, dan penggunaan
+HTTP methods sesuai fungsinya.
+
+PUT digunakan untuk mengganti representasi resource
+secara keseluruhan, sedangkan PATCH digunakan untuk
+memperbarui sebagian field resource.
+
+2. Serializer pada Django REST Framework berfungsi
+untuk mengubah model Django menjadi representasi data
+yang dapat dikirim melalui API, serta memvalidasi
+data yang diterima sebelum disimpan ke database.
+
+ModelSerializer mempermudah proses tersebut karena
+field dapat ditentukan berdasarkan model dan validasi
+dapat dikelola secara terstruktur.
+
+3. Authentication adalah proses memverifikasi identitas
+pengguna, sedangkan authorization menentukan tindakan
+yang boleh dilakukan oleh pengguna tersebut.
+
+Permission class diperlukan di server karena
+menyembunyikan tombol pada frontend saja tidak cukup
+untuk melindungi data. Pengguna tetap dapat mengirim
+HTTP request secara langsung.
+
+4. CSRF protection tetap diperlukan ketika menggunakan
+SessionAuthentication karena browser mengirim session
+cookie secara otomatis.
+
+CSRF token membantu memastikan bahwa request yang
+mengubah data berasal dari konteks yang sah.
+
+force_authenticate tidak cukup untuk menguji CSRF
+karena metode tersebut melewati proses autentikasi
+session. Oleh karena itu, diperlukan APIClient
+dengan enforce_csrf_checks=True dan login().
+
+ChatGPT digunakan untuk membantu memahami DRF.
+Bagian yang dibantu: serializer, permission, API views, dan test.
+Bagaimana kamu memeriksa dan menyesuaikan implementasinya.
+Pengujian yang kamu lakukan secara mandiri.
