@@ -10,7 +10,10 @@
         <p class="section-kicker">People Who Know Me</p>
         <h1>{% if review %}Edit Review{% else %}Tambah Review{% endif %}</h1>
 
-        <form method="POST" class="project-form">
+        <form method="POST" class="project-form" id="reviewForm"
+                {% if review %}
+                    data-review-id="{{ review.id }}"
+                {% endif %}>
             {% csrf_token %}
 
             <div class="form-group">
@@ -55,4 +58,53 @@
         </form>
     </div>
 </section>
+<script>
+    const form = document.getElementById("reviewForm");
+
+    form.addEventListener("submit", async function (event) {
+    event.preventDefault();
+
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+
+    const csrfToken = form.querySelector(
+        '[name="csrfmiddlewaretoken"]'
+    ).value;
+
+    const reviewId = form.dataset.reviewId;
+
+    const url = reviewId
+        ? `/api/reviews/${reviewId}/`
+        : "{% url 'api:review-list' %}";
+
+    const method = reviewId ? "PATCH" : "POST";
+
+    try {
+        const response = await fetch(url, {
+            method: method,
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRFToken": csrfToken
+            },
+            body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+
+        if (!response.ok) {
+            document.getElementById("formMessage").textContent =
+                JSON.stringify(result);
+            return;
+        }
+
+        document.getElementById("formMessage").textContent =
+            "Review berhasil disimpan!";
+
+        form.reset();
+    } catch (error) {
+        document.getElementById("formMessage").textContent =
+            "Gagal mengirim review.";
+    }
+});
+</script>
 {% endblock content %}

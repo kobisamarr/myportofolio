@@ -5,7 +5,7 @@ from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APIClient, APITestCase
 
-from main.models import Project
+from main.models import Project, Reviews
 
 
 class ProjectAPITest(APITestCase):
@@ -136,3 +136,31 @@ class ProjectAPITest(APITestCase):
             self.list_url, self.payload, format="json", HTTP_X_CSRFTOKEN=token,
         )
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+
+class ReviewsAPITest(APITestCase):
+    def setUp(self):
+        self.owner = User.objects.create_superuser(username="owner", password="test-password", email="owner@example.com")
+
+        self.visitor = User.objects.create_user(username="visitor", password="test-password")
+
+        self.user = User.objects.create_user(username="user", password="test-password")
+
+        self.editor = User.objects.create_user(username="editor", password="test-password")
+
+        editor_group = Group.objects.create(name="Editor")
+        self.editor.groups.add(editor_group)
+        self.review = Reviews.objects.create(name="Sarah", relationship="Friend", review="Marwa is a good friend.", rating=5)
+        self.list_url = reverse("api:review-list")
+
+        self.detail_url = reverse("api:review-detail", args=[self.review.id])
+
+        self.star_url = reverse("api:review-star", args=[self.review.id])
+
+        self.payload = {
+            "name": "New Reviewer",
+            "relationship": "College Friend",
+            "review": "Great experience!",
+            "rating": 5
+        }
+
+        

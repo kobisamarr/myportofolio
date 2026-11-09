@@ -73,6 +73,12 @@ class Reviews(models.Model):
     rating = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
 
+    starred_by = models.ManyToManyField(
+        User,
+        related_name="starred_reviews",
+        blank=True
+    )
+
     class Meta:
         db_table = "main_reviews"
 
